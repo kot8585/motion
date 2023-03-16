@@ -1,8 +1,14 @@
 import { BaseComponent } from "../../component.js";
 
-export class ImageComponent<T extends HTMLElement> extends BaseComponent<T> {
-  constructor(htmlString: string, url: string, title: string) {
-    super(htmlString);
+export class ImageComponent extends BaseComponent<HTMLElement> {
+  constructor(url: string, title: string) {
+    super(`
+      <section class="image">
+        <div class="image__holder">
+          <img class="image__thumbnail">
+          <p class="image__title"></p>
+        </div>
+      </section>`);
     const imageElement = this.element.querySelector(
       ".image__thumbnail"
     )! as HTMLImageElement;

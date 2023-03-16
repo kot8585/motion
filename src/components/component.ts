@@ -1,5 +1,10 @@
-export class BaseComponent<T extends HTMLElement> {
-  //음.. 초기화 어ㅓ게 해......외부에서 주입받는게 아니라 내부적으로 만들건데
+//❗️ 외부와 소통하는 api를 가진 클래스는 interface로 선언해주는게 좋다.
+//❗️ element 변수는 내부적으로만 사용할것이기 때문에 interface에 선언해주지 않았다.
+export interface Component {
+  attachTo(parent: HTMLElement, position?: InsertPosition): void;
+}
+
+export class BaseComponent<T extends HTMLElement> implements Component {
   protected element: T;
 
   constructor(htmlString: string) {
