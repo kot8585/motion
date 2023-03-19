@@ -107,3 +107,7 @@ body {
   border-top: 1px solid var(--border-color);
   text-align: center;
 }
+
+img {
+  height: 150px;
+}
