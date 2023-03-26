@@ -2,6 +2,7 @@
 //❗️ element 변수는 내부적으로만 사용할것이기 때문에 interface에 선언해주지 않았다.
 export interface Component {
   attachTo(parent: HTMLElement, position?: InsertPosition): void;
+  removeFrom(parent: HTMLElement): void;
 }
 
 export class BaseComponent<T extends HTMLElement> implements Component {
@@ -15,5 +16,12 @@ export class BaseComponent<T extends HTMLElement> implements Component {
 
   attachTo(parent: HTMLElement, position: InsertPosition = "afterbegin"): void {
     parent.insertAdjacentElement(position, this.element);
+  }
+
+  removeFrom(parent: HTMLElement): void {
+    if (parent !== this.element.parentElement) {
+      throw new Error("Parent mismatch");
+    }
+    parent.removeChild(this.element);
   }
 }
